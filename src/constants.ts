@@ -4,14 +4,14 @@ export const HOTSPOTS: Hotspot[] = [
   { 
     id: 1, 
     top: "34%", 
-    left: "32%", 
+    left: "40%", 
     title: "Inyección de distintos plásticos", 
     description: "Fabricación de piezas utilizando una amplia variedad de polímeros técnicos según las necesidades del proyecto." 
   },
   { 
     id: 2, 
     top: "52%", 
-    left: "48%", 
+    left: "56%", 
     title: "Alta precisión dimensional", 
     description: "El proceso de moldeo por inyección permite obtener piezas con excelente precisión y repetibilidad." 
   },

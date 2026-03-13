@@ -1,4 +1,4 @@
-import { Github, Twitter } from "lucide-react";
+import { Instagram } from "lucide-react";
 
 export const Footer = () => {
   return (
@@ -23,11 +23,8 @@ export const Footer = () => {
         </div>
 
         <div className="flex items-center gap-4">
-          <a href="#" className="p-2 rounded-full hover:bg-black/5 transition-colors text-black/40 hover:text-brand">
-            <Twitter className="w-5 h-5" />
-          </a>
-          <a href="#" className="p-2 rounded-full hover:bg-black/5 transition-colors text-black/40 hover:text-brand">
-            <Github className="w-5 h-5" />
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="p-2.5 rounded-xl bg-black/5 hover:bg-brand/10 transition-all text-black/40 hover:text-brand group">
+            <Instagram className="w-5 h-5 transition-transform group-hover:scale-110" />
           </a>
         </div>
       </div>

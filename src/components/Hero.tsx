@@ -62,7 +62,7 @@ export const Hero = ({ hotspots, activeHotspot, setActiveHotspot }: HeroProps) =
         </div>
 
         {/* Machine Image with Hotspots */}
-        <div className="lg:col-span-5 relative lg:-ml-[24rem] xl:-ml-[28rem] z-20 pointer-events-none mt-20">
+        <div className="lg:col-span-5 relative lg:-ml-[24rem] xl:-ml-[28rem] z-20 pointer-events-none mt-8 lg:mt-20">
           <motion.div 
             initial={{ opacity: 0, x: 100 }}
             animate={{ opacity: 1, x: 0 }}
@@ -73,7 +73,7 @@ export const Hero = ({ hotspots, activeHotspot, setActiveHotspot }: HeroProps) =
               <img 
                 src="https://lh3.googleusercontent.com/d/1LEG2j-i8bkaFoR_nYI7-Dy2Rqqieqnlt" 
                 alt="Industrial Machine"
-                className="w-full h-auto object-contain drop-shadow-[0_35px_35px_rgba(0,0,0,0.15)] scale-110 lg:scale-[1.42] origin-left pointer-events-none will-change-transform"
+                className="w-full h-auto object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.1)] scale-100 md:scale-110 lg:scale-[1.42] origin-center lg:origin-left pointer-events-none will-change-transform"
                 referrerPolicy="no-referrer"
                 loading="eager"
               />
@@ -82,20 +82,21 @@ export const Hero = ({ hotspots, activeHotspot, setActiveHotspot }: HeroProps) =
             {hotspots.map((spot) => (
               <div 
                 key={spot.id}
-                className="absolute cursor-pointer z-30 pointer-events-auto p-4 -m-4"
+                className="absolute cursor-pointer z-30 pointer-events-auto p-3 -m-3"
                 style={{ top: spot.top, left: spot.left }}
-                onMouseEnter={() => setActiveHotspot(spot)}
-                onMouseLeave={() => setActiveHotspot(null)}
+                onClick={() => setActiveHotspot(activeHotspot?.id === spot.id ? null : spot)}
+                onMouseEnter={() => window.innerWidth > 1024 && setActiveHotspot(spot)}
+                onMouseLeave={() => window.innerWidth > 1024 && setActiveHotspot(null)}
               >
                 <motion.div 
                   animate={{ 
-                    scale: activeHotspot?.id === spot.id ? 1.4 : 1,
-                    backgroundColor: activeHotspot?.id === spot.id ? "#2541b2" : "rgba(255,255,255,0.8)",
+                    scale: activeHotspot?.id === spot.id ? 1.3 : 1,
+                    backgroundColor: activeHotspot?.id === spot.id ? "#2541b2" : "rgba(255,255,255,0.9)",
                     boxShadow: activeHotspot?.id === spot.id ? "0 0 20px rgba(37,65,178,0.4)" : "0 4px 12px rgba(0,0,0,0.1)"
                   }}
-                  className="w-10 h-10 rounded-full border-2 border-white flex items-center justify-center backdrop-blur-md transition-colors"
+                  className="w-8 h-8 md:w-10 md:h-10 rounded-full border-2 border-white flex items-center justify-center backdrop-blur-md transition-colors"
                 >
-                  <Plus className={`w-5 h-5 transition-transform ${activeHotspot?.id === spot.id ? 'text-white rotate-45' : 'text-black'}`} />
+                  <Plus className={`w-4 h-4 md:w-5 md:h-5 transition-transform ${activeHotspot?.id === spot.id ? 'text-white rotate-45' : 'text-black'}`} />
                 </motion.div>
 
                 <AnimatePresence>
@@ -104,7 +105,7 @@ export const Hero = ({ hotspots, activeHotspot, setActiveHotspot }: HeroProps) =
                       initial={{ opacity: 0, y: 10, scale: 0.9 }}
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: 10, scale: 0.9 }}
-                      className={`absolute bottom-full left-1/2 -translate-x-1/2 mb-6 ${spot.id <= 2 ? 'w-80' : 'w-72'} bg-white/95 backdrop-blur-xl p-5 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.2)] border border-black/5 z-50 pointer-events-none`}
+                      className={`absolute bottom-full left-1/2 -translate-x-1/2 mb-4 w-[70vw] max-w-[320px] bg-white/95 backdrop-blur-xl p-4 md:p-5 rounded-2xl md:rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.2)] border border-black/5 z-50 pointer-events-none`}
                     >
                       <div className="flex items-center gap-3 mb-3">
                         <div className="w-8 h-8 rounded-full bg-brand/10 flex items-center justify-center">
