@@ -4,6 +4,20 @@
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --color-brand: #2541b2;
+
+  --animate-rotate-gradient: rotate-gradient 4s linear infinite;
+  --animate-rotate-burst: rotate-burst 10s linear infinite;
+
+  @keyframes rotate-gradient {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  @keyframes rotate-burst {
+    0% { transform: rotate(0deg); }
+    2% { transform: rotate(360deg); }
+    100% { transform: rotate(1224deg); }
+  }
 }
 
 @keyframes marquee {
@@ -15,21 +29,45 @@
   animation: marquee 30s linear infinite;
 }
 
-.text-chrome {
-  background: linear-gradient(
-    to bottom,
-    #ffffff 0%,
-    #e2e2e2 45%,
-    #888888 50%,
-    #e2e2e2 55%,
-    #ffffff 100%
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+.button-highlight {
+  position: relative;
+  overflow: hidden;
+}
+
+.button-highlight::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  z-index: 1;
+}
+
+.button-highlight::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  z-index: 1;
 }
 
 body {
   @apply bg-white text-black font-sans antialiased overflow-x-hidden;
+  scroll-behavior: smooth;
+}
+
+/* Custom selection color */
+::selection {
+  background-color: rgba(37, 65, 178, 0.1);
+  color: #2541b2;
+}
+
+/* Smooth transitions for all interactive elements */
+a, button {
+  @apply transition-all duration-300 ease-out;
 }
