@@ -32,32 +32,51 @@ export const Navbar = ({ scrolled, links }: NavbarProps) => {
               <span className="font-bold text-lg md:text-xl tracking-tight">Dualform</span>
             </a>
             
-            <div className="hidden lg:flex items-center gap-6 text-sm font-medium text-black/60">
+            <motion.div 
+              initial="hidden"
+              animate="visible"
+              variants={{
+                visible: {
+                  transition: {
+                    staggerChildren: 0.1
+                  }
+                }
+              }}
+              className="hidden lg:flex items-center gap-6 text-sm font-medium text-black/60"
+            >
               {links.map((link) => (
-                <a 
+                <motion.a 
                   key={link.name}
                   href={link.href} 
-                  className="relative py-2 transition-all hover:text-brand whitespace-nowrap group"
+                  variants={{
+                    hidden: { opacity: 0, y: -10 },
+                    visible: { opacity: 1, y: 0 }
+                  }}
+                  whileHover={{ scale: 1.05, color: "#2541b2" }}
+                  whileTap={{ scale: 0.95 }}
+                  className="relative py-2 transition-colors whitespace-nowrap group"
                 >
                   <span className="relative z-10">{link.name}</span>
                   <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[2px] transition-all duration-300 group-hover:w-full overflow-hidden rounded-full">
                     <div className="absolute inset-0 w-[200%] bg-[linear-gradient(90deg,#2541b2,#60a5fa,#2541b2)] animate-marquee" />
                   </div>
-                </a>
+                </motion.a>
               ))}
-            </div>
+            </motion.div>
           </div>
 
           <div className="flex items-center gap-2 md:gap-4">
-            <a 
+            <motion.a 
               href="#contacto"
-              className="hidden md:block relative group p-[3px] rounded-xl overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-lg shadow-brand/10"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="hidden md:block relative group p-[3px] rounded-xl overflow-hidden transition-all shadow-lg shadow-brand/10"
             >
               <div className="absolute inset-[-1000%] bg-[conic-gradient(from_90deg_at_50%_50%,#2541b2_0%,#60a5fa_50%,#2541b2_100%)] animate-rotate-gradient group-hover:animate-rotate-burst" />
               <div className="relative flex items-center justify-center px-6 py-2.5 bg-white rounded-[9px] text-brand font-bold text-sm transition-colors overflow-hidden">
                 <span className="relative z-10">Solicitar Cotización</span>
               </div>
-            </a>
+            </motion.a>
             <button 
               onClick={() => setIsOpen(!isOpen)}
               className="lg:hidden p-2.5 hover:bg-black/5 rounded-xl transition-colors text-black/70"
@@ -84,6 +103,7 @@ export const Navbar = ({ scrolled, links }: NavbarProps) => {
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: i * 0.05 }}
+                    whileTap={{ scale: 0.98 }}
                     key={link.name}
                     href={link.href}
                     onClick={() => setIsOpen(false)}
